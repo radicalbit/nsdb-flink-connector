@@ -14,7 +14,7 @@ cache:
     - $HOME/.sbt/boot
     - $HOME/.custom-cache
 script:
-  - sbt clean coverage fixCheck test coverageReport coverageAggregate
+  - sbt clean coverage ++$TRAVIS_SCALA_VERSION fixCheck test coverageReport coverageAggregate
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - >
