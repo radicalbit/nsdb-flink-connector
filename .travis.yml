@@ -2,24 +2,16 @@ sudo: required
 dist: precise
 language: scala
 scala:
-  - 2.11.12
+  - 2.11.11
 jdk:
   - oraclejdk8
-before_cache:
-  - find $HOME/.ivy2 -name "ivydata-*.properties" -print -delete
-  - find $HOME/.sbt  -name "*.lock"               -print -delete
-cache:
-  directories:
-    - $HOME/.ivy2/cache
-    - $HOME/.sbt/boot
-    - $HOME/.custom-cache
 script:
   - sbt clean coverage ++$TRAVIS_SCALA_VERSION fixCheck test coverageReport coverageAggregate
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - >
     test "${TRAVIS_PULL_REQUEST}" = 'false' &&
-    test "${TRAVIS_REPO_SLUG}" = 'radicalbit/NSDb' &&
+    test "${TRAVIS_REPO_SLUG}" = 'radicalbit/nsdb-flink-connector' &&
     test "${TRAVIS_JDK_VERSION}" = 'oraclejdk8' &&
     sh "$TRAVIS_BUILD_DIR/travis-credentials.sh" &&
     sbt publish
