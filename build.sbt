@@ -25,7 +25,6 @@ lazy val `nsdb-flink-connector` = (project in file("."))
     organization := "io.radicalbit.nsdb",
     name := "nsdb-flink-connector",
     scalaVersion := "2.11.12",
-    version := "0.8.0-SNAPSHOT",
     scalacOptions := Seq(
       "-Ypartial-unification",
       "-Ywarn-unused",
